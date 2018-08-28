@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+		<link th:href="@{/css/bootstrap-combined.css}" rel="stylesheet" media="screen" />
+	
+	
+	
+		<script th:src="@{/js/jquery.js}"></script>
+		<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div th:replace="layout_baak :: navbar"></div>
+	
+	<div class="container">
+		<div class="row">
+			<h2 align="center">Detail Permintaan Layanan</h2>
+	
+		
+		<form th:object="${layanan}" th:action="@{/createLayanan}"  class="form-horizontal" method="post" enctype="multipart/form-data" >
+                        <div class="form-group">
+                        	<input type="hidden" th:field="*{id}"/>
+                        	<input type="hidden" name="idUser" th:value="*{user.id}"/>
+                            <label class="col-lg-3 control-label">Nama</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="firstName" placeholder="First name" th:field="*{user.username}" readonly="readonly"/>
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Judul Request</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="user	name"  th:field="*{judul}" readonly="readonly" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Start Date</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="email"  th:field="*{startDate}" readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Due Date</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="password"  th:field="*{dueDate}" readonly="readonly" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Isi Layanan</label>
+                            <div class="col-lg-5">
+                               <textarea class="form-control" cols="40" id="id_mensagem"
+									name="mensagem" placeholder="Isi Layanan" rows="10" th:field="*{deskripsiDokumen}" readonly="readonly"
+									></textarea>
+                            </div>
+                        </div>
+
+ 
+                        
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Chooose File</label>
+                            <div class="col-lg-2">
+                                <input type="file" class="form-control" name="filee"  />
+                                <span class="help-block">Choose a file.</span>
+                            </div>
+                        </div>
+                        
+                       
+
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
+                               
+                            </div>
+                        </div>
+                    </form>
+                    	</div>
+		
+	
+	</div>
+	
+	<script type='text/javascript'>
+	
+	</script>
+</body>
+</html>

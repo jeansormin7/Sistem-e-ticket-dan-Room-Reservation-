@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+	media="screen" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/blue.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/fontawesome.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/ionicon.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/default.min.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/allskin.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/progress.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet" media="screen" />
+
+
+
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
+
+
+<title>Login</title>
+<meta
+	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	name='viewport' />
+<meta name="csrf-param" content="_csrf" />
+<meta name="csrf-token"
+	content="VDV5Y0RZalk4WE0PCgNeERxlLBIeDyMrAEENUzUuKzwsGE4MDWkCag=="/>
+
+
+
+</head>
+<body class="hold-transition login-page" style="background: white;">
+	<div class="login-box">
+		<div class="login-box-body" style="border: 2px solid #eee">
+			<p class="login-box-msg">
+				<img src="/foto/del.png" width="70px"/><br/>Institut
+				Teknologi Del
+			</p>
+			<hr/>
+			<form id="login-form" method="post" role="form"  th:action="@{/login}" >
+				<input type="hidden"
+					value="VDV5Y0RZalk4WE0PCgNeERxlLBIeDyMrAEENUzUuKzwsGE4MDWkCag==" />
+				<div class="form-group has-feedback">
+					<div class="form-group field-loginform-username required">
+						<label class="control-label" for="loginform-username">Username</label>
+					
+						<div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  type="text" class="form-control" name="user" value=""  id="user"  autocomplete="off"/>                                        
+                    </div>
+
+						<div class="help-block"></div>
+					</div>
+					<div class="form-group field-loginform-password required">
+						<label class="control-label" for="loginform-password">Password</label>
+						  <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" name="pass" id="pass"  autocomplete="off"/>
+                    </div>         
+						<div class="help-block"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="checkbox icheck">
+							<label>
+								<div class="form-group field-loginform-rememberme">
+
+									<input type="hidden" name="LoginForm[rememberMe]" value="0"/><label><input
+										type="checkbox" id="loginform-rememberme"
+										name="LoginForm[rememberMe]" value="1"/> Remember Me</label>
+
+									<div class="help-block"></div>
+								</div>
+							</label>
+						</div>
+					</div>
+					<!-- /.col -->
+					<div class="col-xs-4">
+						<button type="submit" class="btn btn-primary btn-block btn-flat">Sign
+							In</button>
+					</div>
+					<!-- /.col -->
+				</div>
+				
+
+			</form>
+			
+			
+		</div>
+		<!-- /.login-box-body -->
+	</div>
+	<!-- /.login-box -->
+	<script src="/assets/8fa4663e/jquery.js?v=1487674882"></script>
+	<script src="/assets/7b66704b/yii.js?v=1487674882"></script>
+	<script src="/assets/5583d1a6/js/bootstrap.js?v=1487674883"></script>
+	<script src="/assets/5b2f45c/jquery.pjax.js?v=1487674883"></script>
+	
+	<script type="text/javascript">
+	$(function(){
+		$("#login-form").validate({
+			rules:{
+				user: {
+					required:true,
+					
+				},
+				pass:{
+					required:true,
+					
+				}
+
+			},
+			
+		
+		})
+		
+	});
+	</script>
+</body>
+</html>

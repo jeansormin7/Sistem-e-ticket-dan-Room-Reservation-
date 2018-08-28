@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+media="screen" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/fontawesome.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/timepicker.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/datepicker.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/timepicker.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/button.css}" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+	<nav style="background-color : lightblue" class="navbar navbar-inverse navbar-static-top" role="navigation" th:fragment="navbar">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="container">
+		<div class="navbar-header">
+		
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span><span class="icon-bar"></span><span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="">IT DEL</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a  href="/homeBaak"><span
+						class="glyphicon glyphicon-home"></span>Dashboard</a></li>
+				
+				
+				
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><span
+						class="glyphicon glyphicon-bell"></span>Inbox <span th:if="${not #lists.isEmpty(notifikasi)}"
+						class="label label-warning">New</span></a>
+					<ul th:each="notifikasis : ${notifikasi}" class="dropdown-menu">
+						<li><a href="" th:text="${notifikasis.isiNotifikasi}"></a></li>
+						
+					
+						<li class="divider"></li>
+						<li><a href="/updateNotifikasi" class="text-center">Read All</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" ><span class="glyphicon glyphicon-user" th:text="${userLogin.username}"></span>
+						<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="${'/homedosen/edit/'+userLogin.id}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
+						<li class="divider"></li>
+						<li><a href="/logout"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	
+	<div class="navbar navbar-default" th:fragment="footer">
+		<div class="container">
+			<p class="navbar-text text-center">
+				© Institut Teknologi Del <a href="http://tinyurl.com/tbvalid"
+					target="_blank">HIMSI</a>
+			</p>
+
+		</div>
+
+
+	</div>
+	
+	<div th:fragment="script">
+	
+		<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/bootstrap-timepicker.min.js}"></script>
+		<script th:src="@{/js/bootstrap-timepicker.js}"></script>
+	</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+media="screen" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/fontawesome.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/button.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/datepicker.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap-timepicker.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/sweetalert-master/dist/sweetalert.css}" rel="stylesheet"
+
+media="screen" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet"
+media="screen" />
+
+<meta charset="ISO-8859-1"/>
+<title>
+
+
+
+</title>
+</head>
+<body>
+
+<div th:replace="layout_navbar :: navbar"></div>
+
+	
+	<div class="container">
+	
+					
+
+					
+						<legend><h2>Edit Reservasi Ruangan</h2></legend>
+
+								<div class="modal-body">
+									<form  th:object="${booking}" th:action="@{'/createbookingg/'+${booking.id}}" method="post" id="form-booking">
+													
+										<input type="hidden" th:field="*{id}" />
+										 <input type="hidden" th:field="*{version}"/>
+										<div class="form-group">
+											<input name="noruangan" type="hidden" class="form-control" value=""
+												id="no-gd" readonly="readonly"/>
+										</div>
+
+
+										
+											<div class="form-group">
+											<label for="recipient-name" class="form-control-label">No Ruangan</label>
+
+										
+
+											<div class="input-group bootstrap-timepicker timepicker">
+												<input id="timepicker1" type="text" name="mulai"
+													class="form-control input-small" th:field="*{ruangan.idRuangan}"/>
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-time"></i></span>
+											</div>
+
+										</div>
+										
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">Mulai</label>
+
+										
+
+											<div class="input-group bootstrap-timepicker timepicker">
+												<input id="timepicker1" type="text" name="mulai"
+													class="form-control input-small" th:field="*{startDate}"/>
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-time"></i></span>
+											</div>
+
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">Selesai</label>
+											<div class="input-group bootstrap-timepicker timepicker">
+												<input id="timepicker2" type="text" name="selesai"
+													class="form-control input-small" th:field="*{dueDate}"/>
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-time"></i></span>
+											</div>
+											<br />
+											<div class="form-group">
+												<label for="recipient-name" class="form-control-label">Tujuan
+													Pemakaian Ruangan</label>	
+												<textarea class="form-control" rows="10"
+													id="tujuanPemakaian" name="tujuanPemakaian">Address</textarea>
+											</div>
+
+
+
+										</div>
+
+										<div class="form-group">
+											<button id="btnsubmit" class="btn btn-success">submit</button>
+										</div>
+									</form>
+								</div>
+				
+				</div>
+
+<script type="text/javascript">
+
+	$('#timepicker1').timepicker();
+	$('#timepicker2').timepicker();
+	
+</script>
+
+				
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap-timepicker.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/css/sweetalert-master/dist/sweetalert.min.js}"></script>
+
+
+</body>
+</html>

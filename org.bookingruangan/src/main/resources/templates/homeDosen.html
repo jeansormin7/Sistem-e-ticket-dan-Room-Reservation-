@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+<title>home dosen</title>
+
+<link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"
+media="screen" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/fontawesome.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/button.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/datepicker.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/bootstrap-timepicker.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/sweetalert-master/dist/sweetalert.css}" rel="stylesheet"
+
+media="screen" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet"
+media="screen" />
+
+
+
+
+<style type="text/css">
+
+</style>
+
+</head>
+<body class="hold-transition layout-boxed skin-blue-light sidebar-mini ">
+
+	<div th:replace="layout_navbar :: navbar"></div>
+
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#home" data-toggle="tab"
+				aria-expanded="true">Reservasi Ruangan</a></li>
+			<li class=""><a href="#profile" data-toggle="tab"
+				aria-expanded="false">Request Layanan</a></li>
+			<li class=""><a href="#history" data-toggle="tab"
+				aria-expanded="false">History Layanan</a></li>
+
+
+		</ul>
+
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade active in" id="home">
+			<div class="text-center">
+				<h2> Reservasi Ruangan</h2>
+			</div>
+			<br/>
+		
+				<div class="container-fluid bg-3 text-center">
+					<div th:each="ruangans : ${ruangan}">
+						<div class="col-sm-2" data-toggle="modal" data-target="#modal">
+							<br /> <a th:text="${ruangans.idRuangan}" th:id= "${ruangans.idRuangan}" class="button2"></a>
+						</div>
+					</div>
+					
+
+					<div class="modal fade" id="modal" role="dialog" tabindex="-1">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<div class="modal-body">
+									<form  th:object="${booking}" th:action="@{/createbooking}"
+										method="post" id="form-booking">
+													
+										<input type="hidden" id="idRuangan" name="idRuangan" /> 
+										<input type="hidden" th:field="*{id}" /> <input type="hidden"
+											th:field="*{version}" />
+										<div class="form-group">
+											<input name="noruangan" type="hidden" class="form-control" value=""
+												id="no-gd" readonly="readonly"
+												/>
+										</div>
+
+
+										
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">Mulai</label>
+
+										
+
+											<div class="input-group bootstrap-timepicker timepicker">
+												<input id="timepicker1" type="text" name="mulai"
+													class="form-control input-small" th:field="*{startDate}" />
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-time"></i></span>
+											</div>
+
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">Selesai</label>
+											<div class="input-group bootstrap-timepicker timepicker">
+												<input id="timepicker2" type="text" name="selesai"
+													class="form-control input-small" th:field="*{dueDate}" />
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-time"></i></span>
+											</div>
+											<br />
+											<div class="form-group">
+												<label for="recipient-name" class="form-control-label">Tujuan
+													Pemakaian Ruangan</label>
+												<textarea required ="required" class="form-control" rows="10"
+													id="Overview (max 200 words)"
+													name="Overview (max 200 words)"
+													th:field="*{deskripsiReservasi}">Address</textarea>
+											</div>
+
+
+
+										</div>
+
+										<div class="form-group">
+											<button id="btnsubmit" class="btn btn-success">submit</button>
+										</div>
+
+
+
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					
+
+
+
+				</div>
+			</div>
+
+
+
+
+
+
+			<div class="tab-pane fade" id="profile">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="text-center">
+						<br /> <br />
+						<h2>Request Layanan</h2>
+						<br/>
+						<form th:object="${layanan}" th:action="@{/createeLayanan}"
+							method="post">
+
+	
+							<input type="hidden" th:field="*{id}" />
+							
+							 <p for="recipient-name" style="text-align: left !important;">Judul</p>
+							  
+							 <select id="judul" class="form-control" th:field="*{judul}">
+								<option value="" disabled="disabled" selected="selected">--judul
+									Request--</option>
+									<div th:each="klasifikasis : ${klasifikasi}">
+								<option th:text="${klasifikasis.namaKlasifikasi}" th:value="${klasifikasis.namaKlasifikasi}"></option>
+									</div>
+							</select> <br />
+							
+							  
+
+
+							
+							
+							<div class="form-group">
+											<p for="recipient-name" style="text-align: left !important;">Due Date</p>
+
+										
+
+											<div class="input-group bootstrap-timepicker timepicker">
+												<input  id="tgl1" type="text"
+													class="form-control input-small" th:field="*{dueDate}"/>
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-time"></i></span>
+											</div>
+
+										</div>
+							
+							
+
+							<p for="recipient-name" style="text-align: left !important;">Tujuan Layanan</p>
+							<div class="form-group">
+								<textarea required="required" class="form-control" cols="40" id="tujuan"
+									name="mensagem" placeholder="Isi Layanan" rows="10"
+									th:field="*{deskripsiDokumen}"></textarea>
+
+							</div>
+
+							<button type="submit"  id="btn" class="btn btn-default">Submit</button>
+							<br />
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="history">
+				<div class="container">
+					<div class="col-md-3">
+
+
+						<br />
+						<ul class="nav nav-tabs tabs-left">
+
+							<li><a href="#booking" data-toggle="tab">Reservasi Ruangan</a></li>
+							<li><a href="#layanan" data-toggle="tab">Request Layanan</a></li>
+						</ul>
+					</div>
+					<div class="col-md-9">
+						<div class="tab-content">
+							<div class="tab-pane" id="booking">
+								<br />
+								<h2>History Reservasi Ruangan</h2>
+								<table class="table">
+									<thead style="background-color : lightblue">
+										<tr>
+											<td>Tujuan Pemakaian</td>
+											<td>Due Date</td>
+											<td>Start Date</td>
+											<td>Status</td>
+											
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="allBookings : ${allBooking}">
+											<td th:text="${allBookings.deskripsiReservasi}"></td>
+											<td th:text="${allBookings.startDate}"></td>
+											<td th:text="${allBookings.dueDate}"></td>
+											<td th:text="${allBookings.status}"></td>
+										
+											
+											<td th:if="${allBookings.status} == 'PENDING'"><a th:href="${'/editBooking/'+allBookings.id}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+										
+										</tr>
+
+									</tbody>
+
+								</table>
+							</div>
+							<div class="tab-pane" id="layanan">
+							<br />
+								<h3>History Request Layanan</h3>
+								<br/>
+									<table class="table">
+									<thead  style="background-color : lightblue">
+										<tr>
+											<td>Judul</td>
+											<td>Deskripsi Request</td>
+											<td>Start Date</td>
+											<td>Due Date</td>
+											<td>Status</td>
+											<td>Download</td>
+											
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="allLayanans : ${allLayanan}">
+												<td th:text="${allLayanans.judul}"></td>
+												<td th:text="${allLayanans.deskripsiDokumen}"></td>
+												<td th:text="${allLayanans.startDate}"></td>
+												<td th:text="${allLayanans.dueDate}"></td>
+												<td th:text="${allLayanans.statusLayanan}"></td>
+												<td th:if="${allLayanans.file}">
+													<a th:href="${'/file/'+allLayanans.file}"><span class = "glyphicon glyphicon-download-alt"></span></a>
+													
+												</td>
+										</tr>
+											
+
+									</tbody>
+
+								</table>
+								
+								<div class="form-group">
+											<button id="btnsubmit" class="btn btn-default">edit</button>
+										</div>
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<br />
+
+
+
+
+	</div>
+
+
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap-timepicker.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/css/sweetalert-master/dist/sweetalert.min.js}"></script>
+
+	<script type="text/javascript">
+
+	
+	 $("#btn").click(function(){
+		 if($('#tujuan').val() != ""){
+				sweetAlert("Permintaan Telah Dikirim", "Silahkan Tunggu Konfirmasi Dari Baak", "success");
+	
+		}
+		 else
+			 sweetAlert("Inputan Salah", "", "error");
+	 })
+
+	 $(function(){
+
+		  $("#form-booking").validate({
+				rules:{
+					noruangan: {
+						required:true,
+						number:true,
+						
+					},
+					mulai:{
+						required:true,
+						number:true,
+						
+					},
+
+					selesai:{
+						required:true,
+						number:true,
+					}
+
+					
+
+				},
+				
+			
+			})
+		
+			
+		});
+		
+	
+	 $('#timepicker1').timepicker();
+	 $('#timepicker2').timepicker();
+
+	 $(document).ready(function(){
+			$('#tgl1').datepicker({
+				format: "dd/mm/yyyy"
+			});
+			$('#tgl2').datepicker({
+				format: "dd/mm/yyyy"
+			});
+		});
+
+		
+
+	 $("#512").click(function(){
+	       $("#no-gd").val("1");
+	       $("#idRuangan").val("1");
+	        $("#table-history").empty();
+	       
+	    	   $("#table-history").append("<tr><td>1</td><td>Selasa</td><td>11-12</td></tr>");
+	    	
+	      
+	    });
+
+	    
+	    $("#513").click(function(){
+	       $("#no-gd").val("3");
+	       $("#idRuangan").val("3");
+	       $("#table-history").empty();
+	       
+	    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+	    	
+	      
+	    });
+
+	    $("#514").click(function(){
+		   
+		       $("#idRuangan").val("4");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#515").click(function(){
+		       $("#no-gd").val("5");
+		       $("#idRuangan").val("5");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#516").click(function(){
+		       $("#no-gd").val("6");
+		       $("#idRuangan").val("1");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#521").click(function(){
+		       $("#no-gd").val("521");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#522").click(function(){
+		       $("#no-gd").val("522");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#523").click(function(){
+		       $("#no-gd").val("523");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#524").click(function(){
+		       $("#no-gd").val("525");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#526").click(function(){
+		       $("#no-gd").val("526");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#711").click(function(){
+		       $("#no-gd").val("711");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#712").click(function(){
+		       $("#no-gd").val("712");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#713").click(function(){
+		       $("#no-gd").val("713");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#714").click(function(){
+		       $("#no-gd").val("714");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#715").click(function(){
+		       $("#no-gd").val("715");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#716").click(function(){
+		       $("#no-gd").val("716");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#721").click(function(){
+		       $("#no-gd").val("721");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#722").click(function(){
+		       $("#no-gd").val("722");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#723").click(function(){
+		       $("#no-gd").val("723");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#724").click(function(){
+		       $("#no-gd").val("724");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#725").click(function(){
+		       $("#no-gd").val("725");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#726").click(function(){
+		       $("#no-gd").val("726");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#811").click(function(){
+		       $("#no-gd").val("811");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#812").click(function(){
+		       $("#no-gd").val("812");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#813").click(function(){
+		       $("#no-gd").val("813");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#814").click(function(){
+		       $("#no-gd").val("814");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#815").click(function(){
+		       $("#no-gd").val("815");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#816").click(function(){
+		       $("#no-gd").val("816");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#821").click(function(){
+		       $("#no-gd").val("821");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#822").click(function(){
+		       $("#no-gd").val("822").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#823").click(function(){
+		       $("#no-gd").val("823");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#824").click(function(){
+		       $("#no-gd").val("824");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#825").click(function(){
+		       $("#no-gd").val("825");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#826").click(function(){
+		       $("#no-gd").val("826");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#827").click(function(){
+		       $("#no-gd").val("827");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#911").click(function(){
+		       $("#no-gd").val("911");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#912").click(function(){
+		       $("#no-gd").val("912");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#913").click(function(){
+		       $("#no-gd").val("913");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#914").click(function(){
+		       $("#no-gd").val("914");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#915").click(function(){
+		       $("#no-gd").val("915");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    $("#916").click(function(){
+		       $("#no-gd").val("916");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#917").click(function(){
+		       $("#no-gd").val("917");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#921").click(function(){
+		       $("#no-gd").val("921");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#922").click(function(){
+		       $("#no-gd").val("922");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#923").click(function(){
+		       $("#no-gd").val("923");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#924").click(function(){
+		       $("#no-gd").val("924");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#925").click(function(){
+		       $("#no-gd").val("925");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#926").click(function(){
+		       $("#no-gd").val("926");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+
+	    $("#927").click(function(){
+		       $("#no-gd").val("927");
+		       $("#table-history").empty();
+		       
+		    	   $("#table-history").append("<tr><td>1</td><td>Senin</td><td>11-12</td></tr>");
+		    	
+		      
+		    });
+	    
+
+    
+
+
+</script>
+</body>
+</html>

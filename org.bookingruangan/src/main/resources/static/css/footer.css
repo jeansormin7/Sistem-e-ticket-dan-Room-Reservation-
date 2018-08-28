@@ -1,0 +1,68 @@
+.foot-header{
+  font-family: OpenSansBold, Arial, sans-serif;
+  font-size: 13px;
+  color: #111;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-weight:bold;
+;
+}
+.foot-links a, .foot-links p{
+  display: block;
+  color: rgb(63, 63, 63);
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  font-family: OpenSansRegular, Arial, sans-serif;
+  font-size: 12px;
+  color: rgb(63, 63, 63);
+  padding-bottom: 2px;
+}
+.foot-address{
+  font-size: 12px;
+  padding-bottom: 10px;
+  font-weight:bold;
+}
+
+.foot-address a {
+
+  color: #c82021;
+  padding-bottom: 10px;
+  font-weight:bold;
+}
+
+.foot-address i{
+  color:#fff;
+
+}
+#bottom-footer{
+  margin-bottom: 20px;
+	border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#bottom-footer a{
+  text-decoration: none;
+  color: #626262;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  font-size: 12px;
+  padding: 0px 0px;
+  border-right: 1px solid #ccc;
+  font-family: 'OpenSansRegular', Arial, sans-serif;
+  font-size: 13px;
+  color: #626262;
+  padding: 0 15px;
+
+}
+#final-footer{
+	font-size: 11px;
+  	color: #666;
+}
+#final-footer i{
+	font-size: auto;
+}
